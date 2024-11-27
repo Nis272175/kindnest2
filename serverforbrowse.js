@@ -233,13 +233,16 @@ app.post("/register", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   } finally {
+
+    // trying it
+    fetchOrg();
+    // tried it
+
     await client.close();
   }
 });
 // ////////////////////////////////////////////////////
-// trying it
-fetchOrg();
-// tried it
+
 // ----------------------------------------------------  //
 
 server.listen(PORT, () => {
