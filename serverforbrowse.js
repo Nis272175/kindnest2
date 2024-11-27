@@ -16,7 +16,9 @@ const io = new Server(server);
 ///////////////////////////////////////////////////////////////////
 
 const client = new MongoClient(uri);
-const PORT = 3000;
+// const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
 app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -235,6 +237,6 @@ app.post("/register", async (req, res) => {
 
 // ----------------------------------------------------  //
 
-server.listen(3000, () => {
+server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
