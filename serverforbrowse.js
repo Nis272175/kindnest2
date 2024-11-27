@@ -52,6 +52,9 @@ app.get("/hiw.html", (req, res) => {
 app.get("/mission.html", (req, res) => {
   res.sendFile(path.join(__dirname, "/mission.html"));
 });
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "/index.html"));
+});
 
 async function fetchOrg() {
   try {
