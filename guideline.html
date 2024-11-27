@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Guidelines - DonateKindly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e91e63;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #e91e63;
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #e91e63;
+            color: #e91e63;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #e91e63 0%, #ff6090 100%);
+            color: white;
+            padding: 6rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .guideline-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .guideline-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: #fce4ec;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .guideline-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .guideline-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .accordion {
+            margin-bottom: 4rem;
+        }
+
+        .accordion-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.active {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        .accepted-items {
+            background: #f8f9fa;
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .item-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .item-category h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .item-list {
+            list-style: none;
+        }
+
+        .item-list li {
+            color: #666;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .item-list li::before {
+            content: "✓";
+            color: #4caf50;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 4rem 1rem;
+            }
+
+            .content-container {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span>♥</span>
+                <span>DonateKindly</span>
+            </a>
+            <div class="nav-links">
+                <button class="btn btn-outline" id="hiw">How It Works</button>
+                <button class="btn btn-outline">Browse</button>
+                <button class="btn btn-outline">Sign In</button>
+                <button class="btn btn-primary donation">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Donation Guidelines</h1>
+        <p>Learn about our donation standards and requirements to ensure your contributions make the maximum impact.</p>
+    </section>
+
+    <div class="content-container">
+        <div class="guidelines-grid">
+            <div class="guideline-card">
+                <div class="card-icon">✨</div>
+                <h3>Quality Standards</h3>
+                <p>All donated items must be clean, functional, and in good condition. Items should have at least 6 months of usable life remaining.</p>
+                <button class="btn btn-outline">Learn More</button>
+            </div>
+            <div class="guideline-card">
+                <div class="card-icon">📦</div>
+                <h3>Packaging Requirements</h3>
+                <p>Items should be properly packaged to prevent damage during transport. Use appropriate boxes and padding materials.</p>
+                <button class="btn btn-outline">View Details</button>
+            </div>
+            <div class="guideline-card">
+                <div class="card-icon">📅</div>
+                <h3>Scheduling</h3>
+                <p>Schedule your donation drop-off at least 24 hours in advance. This helps us prepare adequate space and staff.</p>
+                <button class="btn btn-outline">Schedule Now</button>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="section-title">
+                <h2>Common Questions</h2>
+                <p>Find answers to frequently asked questions about our donation process.</p>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    What items are not accepted?
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>We cannot accept:<br>
+                    - Broken or damaged items<br>
+                    - Items with missing parts<br>
+                    - Expired products<br>
+                    - Hazardous materials<br>
+                    - Used personal care items</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    How do I prepare items for donation?
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>To prepare your items:<br>
+                    1. Clean all items thoroughly<br>
+                    2. Check for completeness<br>
+                    3. Package fragile items carefully<br>
+                    4. Label boxes with contents<br>
+                    5. Keep related items together</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    What documentation do I need?
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Please bring:<br>
+                    - Valid ID<br>
+                    - List of donated items<br>
+                    - Any warranty cards or manuals (if applicable)<br>
+                    - Original packaging (when possible)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="accepted-items">
+        <div class="content-container">
+            <div class="section-title">
+                <h2>Accepted Items</h2>
+                <p>Below is a list of items we currently accept for donation.</p>
+            </div>
+            <div class="items-grid">
+                <div class="item-category">
+                    <h3>📚 Educational</h3>
+                    <ul class="item-list">
+                        <li>Textbooks (less than 5 years old)</li>
+                        <li>School supplies</li>
+                        <li>Educational toys</li>
+                        <li>Learning materials</li>
+                    </ul>
+                </div>
+                <div class="item-category">
+                    <h3>👕 Clothing</h3>
+                    <ul class="item-list">
+                        <li>Clean, gently used clothing</li>
+                        <li>New undergarments</li>
+                        <li>Shoes in good condition</li>
+                        <li>Accessories</li>
+                    </ul>
+                </div>
+                <div class="item-category">
+                    <h3>🏠 Household</h3>
+                    <ul class="item-list">
+                        <li>Furniture in good condition</li>
+                        <li>Working appliances</li>
+                        <li>Kitchen items</li>
+                        <li>Bedding and linens</li>
+                    </ul>
+                </div>
+                <div class="item-category">
+                    <h3>🖥️ Electronics</h3>
+                    <ul class="item-list">
+                        <li>Working computers</li>
+                        <li>Tablets and phones</li>
+                        <li>Printers and accessories</li>
+                        <li>Charging cables</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('#hiw').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'hiw.html';
+            });
+        });
+
+        document.querySelectorAll('.donation').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'donation.html';
+            });
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const isActive = content.classList.contains('active');
+                
+                // Close all accordion items
+                document.querySelectorAll('.accordion-content').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('.accordion-header span').forEach(span => {
+                    span.textContent = '+';
+                });
+
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    content.classList.add('active');
+                    this.querySelector('span').textContent = '-';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

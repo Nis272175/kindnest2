@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DonateKindly - FAQ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e91e63;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #e91e63;
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #e91e63;
+            color: #e91e63;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(233, 30, 99, 0.05), rgba(233, 30, 99, 0.1));
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            border: none;
+            background: #f5f5f5;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: #e91e63;
+            color: white;
+        }
+
+        .faq-section {
+            display: none;
+        }
+
+        .faq-section.active {
+            display: block;
+        }
+
+        .faq-category {
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e91e63;
+        }
+
+        .accordion {
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: white;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #f8f9fa;
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .accordion-content.active {
+            padding: 1rem;
+            max-height: 500px;
+        }
+
+        .accordion-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .contact-section {
+            background: #f8f9fa;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .tab-container {
+                flex-direction: column;
+            }
+
+            .tab {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span>♥</span>
+                <span>DonateKindly</span>
+            </a>
+            <div class="nav-links">
+                <button class="btn btn-outline">How It Works</button>
+                <button class="btn btn-outline">Browse</button>
+                <button class="btn btn-outline">Sign In</button>
+                <button class="btn btn-primary">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find answers to common questions about donating and receiving items through DonateKindly</p>
+    </section>
+
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search FAQs...">
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </div>
+
+    <div class="faq-container">
+        <div class="tab-container">
+            <button class="tab active" data-section="donors">For Donors</button>
+            <button class="tab" data-section="organizations">For Organizations</button>
+        </div>
+
+        <div class="faq-section active" id="donors">
+            <div class="faq-category">
+                <h2 class="category-title">Getting Started</h2>
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <span>How do I start donating items?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>To start donating, simply create an account on DonateKindly and click the "Start Donating" button. You'll be able to browse organizations in need, list your items, and arrange delivery or pickup.</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <span>What types of items can I donate?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We accept a wide range of items including clothing, furniture, electronics, books, and household goods. All items should be in good, usable condition. Check our donation guidelines for specific requirements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h2 class="category-title">Donation Process</h2>
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <span>How does pickup/delivery work?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>You can choose between arranging your own delivery or scheduling a pickup. For pickups, you'll select a convenient time slot, and our partner organizations will coordinate the collection of items.</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <span>Can I get a tax receipt for my donation?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes! After your donation is received, the organization will provide you with a tax receipt through our platform. You can access all your donation receipts in your account dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section" id="organizations">
+            <div class="faq-category">
+                <h2 class="category-title">Registration & Setup</h2>
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <span>How do we register our organization?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>To register, click "Register Organization" and provide your organization's details, including your 501(c)(3) documentation. Our team will review your application within 2-3 business days.</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <span>What are the requirements for organizations?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Organizations must be registered nonprofits, have a physical location for receiving donations, and maintain regular hours for donation processing. You'll need to provide proof of nonprofit status and insurance documentation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h2 class="category-title">Managing Donations</h2>
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <span>How do we list our needs?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Once registered, you can create a needs list through your dashboard. Specify items needed, quantities, conditions accepted, and any special requirements. You can update this list at any time.</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <span>How do we coordinate pickups?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>You can manage pickup schedules through your dashboard. Set available time slots, assign volunteers or staff for pickups, and communicate with donors directly through our platform.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact-section">
+        <div class="contact-content">
+            <h2>Still Have Questions?</h2>
+            <p>Our support team is here to help. Contact us directly for assistance.</p>
+            <button class="btn btn-primary" style="margin-top: 1rem;">Contact Support</button>
+        </div>
+    </section>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Show corresponding section
+                document.querySelectorAll('.faq-section').forEach(section => section.classList.remove('active'));
+                document.getElementById(tab.dataset.section).classList.add('active');
+            });
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.parentElement;
+                const content = header.nextElementSibling;
+                
+                // Toggle active state
+                accordion.classList.toggle('active');
+                content.classList.toggle('active');
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchButton = document.querySelector('.search-box .btn');
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            document.querySelectorAll('.accordion').forEach(accordion => {
+                const question = accordion.querySelector('.accordion-header span').textContent.toLowerCase();
+                const answer = accordion.querySelector('.accordion-content').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    accordion.style.display = 'block';
+                } else {
+                    accordion.style.display = 'none';
+                }
+            });
+        }
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>

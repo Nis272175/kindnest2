@@ -1,0 +1,702 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - DonateKindly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navigation styles (kept consistent with main page) */
+        nav {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e91e63;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #e91e63;
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #e91e63;
+            color: #e91e63;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #d11352 0%,#e91e63 3%, #f06292 50%, #e91e63 97%, #d11352 100%);
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Process Section */
+        .process-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e91e63;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-step h3 {
+            margin: 1.5rem 0 1rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .process-step p {
+            color: #666;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #f8f9fa;
+            padding: 4rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #e91e63 0%, #ff4081 100%);
+            color: white;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .cta-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .btn-white {
+            background: white;
+            color: #e91e63;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-question {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span>♥</span>
+                <span>DonateKindly</span>
+            </a>
+            <div class="nav-links">
+                <button class="btn btn-outline">How It Works</button>
+                <button class="btn btn-outline">Browse</button>
+                <button class="btn btn-outline">Sign In</button>
+                <button class="btn btn-primary">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>How DonateKindly Works</h1>
+        <p>Our platform makes it easy to connect donors with organizations in need. Learn how you can make a difference through in-kind donations.</p>
+    </section>
+
+    Process Section
+    <section class="process-section">
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Create Your Account</h3>
+                <p>Sign up as a donor or organization. Fill in your profile and preferences to get started.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Browse or List Needs</h3>
+                <p>Donors can browse needed items, while organizations can list their specific requirements.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Connect & Coordinate</h3>
+                <p>Use our platform to communicate and arrange donation details securely.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Complete the Donation</h3>
+                <p>Arrange delivery or pickup of items and track the donation process.</p>
+            </div>
+        </div>
+    </section>
+
+    FAQ Section
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What types of items can I donate?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    We accept a wide range of new or gently used items including furniture, electronics, clothing, books, and more. All items must be in good working condition and meet our quality guidelines.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I know my donation is going to a legitimate organization?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    All organizations on our platform go through a thorough verification process. We check their non-profit status, review their documentation, and maintain ongoing monitoring of their activities.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is my donation tax-deductible?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, donations to verified non-profit organizations are typically tax-deductible. You'll receive a donation receipt that you can use for tax purposes.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    CTA Section
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Join thousands of donors and organizations already using DonateKindly to make meaningful contributions to their communities.</p>
+            <button class="btn btn-white">Start Donating Today</button>
+        </div>
+    </section>
+
+    Footer (reuse the footer from main page)
+    Add footer code here
+
+    <script>
+        // FAQ Accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                    const span = faqItem.querySelector('span');
+                    span.textContent = '+';
+                });
+
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                    question.querySelector('span').textContent = '-';
+                }
+            });
+        });
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - DonateKindly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body{
+            margin-top: -20px;
+        }
+        nav {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2b5168;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #2b5168;
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #2b5168;
+            color: #2b5168;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e3d4f 0%, #2b5168 3%, #3d7494 50%, #2b5168 97%, #1e3d4f 100%);
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .process-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: #3faecf54;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2b5168;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-step h3 {
+            margin: 1.5rem 0 1rem;
+            color: #2b5168;
+            text-align: center;
+        }
+
+        .process-step p {
+            color: #666;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .faq-section {
+            background: #f8f9fa;
+            padding: 4rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: #2b5168;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #2b5168 0%, #3d7494 100%);
+            color: white;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .cta-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .btn-white {
+            background: white;
+            color: #2b5168;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-question {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span>♥</span>
+                <span>DonateKindly</span>
+            </a>
+            <div class="nav-links">
+                <button class="btn btn-outline">How It Works</button>
+                <button class="btn btn-outline">Browse</button>
+                <button class="btn btn-outline">Sign In</button>
+                <button class="btn btn-primary">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>How DonateKindly Works</h1>
+        <p>Our platform makes it easy to connect donors with organizations in need. Learn how you can make a difference through in-kind donations.</p>
+    </section>
+
+    <section class="process-section">
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Create Your Account</h3>
+                <p>Sign up as a donor or organization. Fill in your profile and preferences to get started.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Browse or List Needs</h3>
+                <p>Donors can browse needed items, while organizations can list their specific requirements.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Connect & Coordinate</h3>
+                <p>Use our platform to communicate and arrange donation details securely.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Complete the Donation</h3>
+                <p>Arrange delivery or pickup of items and track the donation process.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What types of items can I donate?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    We accept a wide range of new or gently used items including furniture, electronics, clothing, books, and more. All items must be in good working condition and meet our quality guidelines.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I know my donation is going to a legitimate organization?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    All organizations on our platform go through a thorough verification process. We check their non-profit status, review their documentation, and maintain ongoing monitoring of their activities.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is my donation tax-deductible?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, donations to verified non-profit organizations are typically tax-deductible. You'll receive a donation receipt that you can use for tax purposes.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Join thousands of donors and organizations already using DonateKindly to make meaningful contributions to their communities.</p>
+            <button class="btn btn-white">Start Donating Today</button>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                    const span = faqItem.querySelector('span');
+                    span.textContent = '+';
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    question.querySelector('span').textContent = '-';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

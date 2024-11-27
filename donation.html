@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - DonateKindly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f1faee;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .donation-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .donation-form {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .donation-type {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .donation-type label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #457B9D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #2b5168;
+        }
+
+        .item-list {
+            margin-top: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item-row:last-child {
+            border-bottom: none;
+        }
+
+        .remove-item {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .donation-type {
+                flex-direction: column;
+            }
+        }
+        /* ----------------- */
+        nav {
+            background: #2b5168;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #174969;
+            color: white;
+            box-shadow: 2px 0px 21px black;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #000000;
+            color: #000000;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        /* ----------------- */
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span>♥</span>
+                <span>DonateKindly</span>
+            </a>
+            <div class="nav-links">
+                <button class="btn btn-outline" id="hiw">How It Works</button>
+                <button class="btn btn-outline donation">Browse</button>
+                <button class="btn btn-outline">Sign In</button>
+                <button class="btn btn-primary donation">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="donation-header">
+            <h1>In-Kind Donation Form</h1>
+            <p>Help local organizations by donating items they need most</p>
+        </div>
+
+        <form class="donation-form" id="donationForm">
+            <div class="form-group">
+                <label for="donorName">Your Name</label>
+                <input type="text" id="donorName" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="donorEmail">Email Address</label>
+                <input type="email" id="donorEmail" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label>Donation Type</label>
+                <div class="donation-type">
+                    <label>
+                        <input type="radio" name="donationType" value="individual" checked>
+                        Individual Donation
+                    </label>
+                    <label>
+                        <input type="radio" name="donationType" value="group">
+                        Group/Business Donation
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="organizationSelect">Select Organization</label>
+                <select id="organizationSelect" class="form-control" required>
+                    <option value="">Choose an Organization</option>
+                    <option value="org1">Local School Supply Drive</option>
+                    <option value="org2">Community Food Bank</option>
+                    <option value="org3">Homeless Shelter Supplies</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Donation Items</label>
+                <div class="item-inputs">
+                    <div class="item-input-row">
+                        <input type="text" placeholder="Item Name" class="form-control item-name" required>
+                        <input type="number" placeholder="Quantity" class="form-control item-quantity" required min="1">
+                        <button type="button" class="btn add-item">+ Add Item</button>
+                    </div>
+                </div>
+                <div class="item-list" id="itemList"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="additionalNotes">Additional Notes</label>
+                <textarea id="additionalNotes" class="form-control" rows="4" placeholder="Any special instructions or additional information"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary">Submit Donation</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const donationForm = document.getElementById('donationForm');
+            const itemList = document.getElementById('itemList');
+            const addItemBtn = document.querySelector('.add-item');
+            const itemInputRow = document.querySelector('.item-input-row');
+
+            const items = [];
+
+            addItemBtn.addEventListener('click', function() {
+                const itemNameInput = itemInputRow.querySelector('.item-name');
+                const itemQuantityInput = itemInputRow.querySelector('.item-quantity');
+
+                const itemName = itemNameInput.value.trim();
+                const itemQuantity = itemQuantityInput.value;
+
+                if (itemName && itemQuantity) {
+                    const item = { name: itemName, quantity: itemQuantity };
+                    items.push(item);
+                    renderItemList();
+
+                    // Clear inputs
+                    itemNameInput.value = '';
+                    itemQuantityInput.value = '';
+                }
+            });
+            // ----------------- //
+            document.querySelectorAll('#hiw').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'hiw.html';
+                });
+            });
+
+            document.querySelectorAll('.donation').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'donation.html';
+                });
+            });
+            // ----------------- //
+            function renderItemList() {
+                itemList.innerHTML = items.map((item, index) => `
+                    <div class="item-row">
+                        <span>${item.name}</span>
+                        <span>Quantity: ${item.quantity}</span>
+                        <button type="button" class="remove-item" data-index="${index}">Remove</button>
+                    </div>
+                `).join('');
+
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = this.getAttribute('data-index');
+                        items.splice(index, 1);
+                        renderItemList();
+                    });
+                });
+            }
+
+            donationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (items.length === 0) {
+                    alert('Please add at least one donation item.');
+                    return;
+                }
+
+                const formData = {
+                    donorName: document.getElementById('donorName').value,
+                    donorEmail: document.getElementById('donorEmail').value,
+                    donationType: document.querySelector('input[name="donationType"]:checked').value,
+                    organization: document.getElementById('organizationSelect').value,
+                    items: items,
+                    additionalNotes: document.getElementById('additionalNotes').value
+                };
+
+                console.log('Donation Submission:', formData);
+                // In a real application, you would send this data to a backend service
+                alert('Thank you for your donation! We will review your items and contact you soon.');
+                
+                // Reset form
+                donationForm.reset();
+                items.length = 0;
+                renderItemList();
+            });
+        });
+    </script>
+</body>
+</html>

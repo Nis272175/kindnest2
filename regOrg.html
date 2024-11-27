@@ -1,0 +1,164 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Your Organization - DonateKindly</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f1faee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        nav {
+            background: #2b5168;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+        }
+        .btn-primary {
+            background: #457B9D;
+            color: white;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #457B9D;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+        button:hover {
+            background: #0b375c;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="/index.html" class="logo">
+                <span>♥</span>
+                <span>DonateKindly</span>
+            </a>
+            <div class="nav-links">
+                <a href="hiw.html" class="btn btn-outline" style="text-decoration: none;">How It Works</a>
+                <a href="browse.html" class="btn btn-outline" style="text-decoration: none;">Browse</a>
+                <a href="signin.html" class="btn btn-outline" style="text-decoration: none;">Sign In</a>
+                <a href="donation.html" class="btn btn-primary donation" style="text-decoration: none;">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Register Your Organization</h1>
+        <form id="registerForm" method="POST" action="/register">
+            <div class="form-group">
+                <label for="orgName">Organization Name</label>
+                <input type="text" id="orgName" name="orgName" required>
+            </div>
+            <div class="form-group">
+                <label for="contactName">Contact Person Name</label>
+                <input type="text" id="contactName" name="contactName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Brief Description of Your Organization</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        // document.getElementById('registerForm').addEventListener('submit', function(e) {
+        //     e.preventDefault();
+        //     // Here you can add functionality to handle the form submission
+        //     // console.log('Form submitted:', {
+        //     //     orgName: this.orgName.value,
+        //     //     contactName: this.contactName.value,
+        //     //     email: this.email.value,
+        //     //     phone: this.phone.value,
+        //     //     description: this.description.value
+        //     // });
+            
+        // });
+    </script>
+
+</body>
+</html>

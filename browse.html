@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Organizations - DonateKindly</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f1faee;
+            color: #333;
+        }
+
+        nav {
+            background: #2b5168;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #174969;
+            color: white;
+            box-shadow: 2px 0px 21px black;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #000000;
+            color: #000000;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .search-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .filters {
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-group {
+            flex: 1;
+        }
+
+        .filter-group label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .filter-group select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+
+        .filter-group select:focus {
+            border-color: #174969;
+            outline: none;
+        }
+
+        .organizations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2em;
+        }
+
+        .org-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .org-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .org-needs {
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .need-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+
+        .match-badge {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .search-section, .filters {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span>♥</span>
+                <span>DonateKindly</span>
+            </a>
+            <div class="nav-links">
+                <button class="btn btn-outline" id="hiw">How It Works</button>
+                <button class="btn btn-outline donation">Browse</button>
+                <button class="btn btn-outline">Sign In</button>
+                <button class="btn btn-primary donation">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="search-section">
+            <input type="text" class="search-input" placeholder="Search organizations or needed items">
+            <button class="btn btn-primary" id="search-btn">Search</button>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label for="category-filter">Category</label>
+                <select id="category-filter">
+                    <option value="">All Categories</option>
+                    <option value="education">Education</option>
+                    <option value="food">Food Bank</option>
+                    <option value="shelter">Homeless Shelter</option>
+                    <option value="children">Children's Support</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="location-filter">Location</label>
+                <select id="location-filter">
+                    <option value="">All Locations</option>
+                    <option value="urban">Urban</option>
+                    <option value="suburban">Suburban</option>
+                    <option value="rural">Rural</option>
+                </select>
+            </div>
+        </div>
+        <div class="organizations-grid" id="org-results"></div>
+    </div>
+    <!-- //////////////////////////////////////////////// -->
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <!-- /////////////////////////////////////////////// -->
+    <script>
+
+
+        const organizations = [
+            {
+                name: "Hope Education Center",
+                category: "education",
+                location: "urban",
+                description: "Supporting underprivileged students",
+                needs: [
+                    { item: "Textbooks", quantity: 50, urgency: "high" },
+                    { item: "Laptops", quantity: 10, urgency: "medium" },
+                    { item: "Backpacks", quantity: 30, urgency: "low" }
+                ]
+            },
+            {
+                name: "Community Food Bank",
+                category: "food",
+                location: "suburban",
+                description: "Providing meals to families in need",
+                needs: [
+                    { item: "Non-perishable Food", quantity: 200, urgency: "high" },
+                    { item: "Canned Goods", quantity: 100, urgency: "medium" }
+                ]
+            },
+            {
+                name: "Urban Shelter Network",
+                category: "shelter",
+                location: "urban",
+                description: "Supporting homeless individuals",
+                needs: [
+                    { item: "Blankets", quantity: 50, urgency: "high" },
+                    { item: "Winter Coats", quantity: 25, urgency: "medium" }
+                ]
+            }
+        ];
+////////////////////////////////////////////////////////////////////////
+
+        // Listen for new data
+        socket.on('newData', (data) => {
+            organizations.push(data); // Append to the array
+            console.log(organizations); // Updated array
+            renderOrganizations(organizations);
+        });
+////////////////////////////////////////////////////////////////////////
+        //fetch data from server
+        // async function fetchAndAppend() {
+        //     console.log("in fetchAndAppend"); // // // // / // / / / / / // / / // // 
+        //     const response = await fetch('/browse.html'); // Fetch from server.js endpoint
+        //     console.log("fetched in response");
+            
+        //     if (response.ok) {
+        //         const newData = await response.json();
+        //         console.log("parsed into json");
+                
+        //         organizations.push(newData); // Append to the array
+        //     //   console.log(); // Changes are logged to the console, not the page
+        //     }
+        //     else {
+        //         console.error("Failed to fetch new data.");
+        //     }
+        // }
+        // fetchAndAppend();
+        
+        //
+ 
+        const orgResults = document.getElementById('org-results');
+        const searchInput = document.querySelector('.search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const categoryFilter = document.getElementById('category-filter');
+        const locationFilter = document.getElementById('location-filter');
+
+        function renderOrganizations(filteredOrgs) {
+            orgResults.innerHTML = filteredOrgs.map(org => `
+                <div class="org-card">
+                    <h3>${org.name}</h3>
+                    <p>${org.description}</p>
+                    <div class="org-needs">
+                        <h4>Current Needs</h4>
+                        ${org.needs.map(need => `
+                            <div class="need-item">
+                                <span>${need.item}</span>
+                                <div>
+                                    <span>Qty: ${need.quantity}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="btn btn-primary donation">Donate to ${org.name}</button>
+                </div>
+            `).join('');
+
+            // Re-attach donation button event listeners
+            document.querySelectorAll('.donation').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'donation.html';
+                });
+            });
+        }
+
+        function filterOrganizations() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const categoryTerm = categoryFilter.value;
+            const locationTerm = locationFilter.value;
+
+            const filteredOrgs = organizations.filter(org => 
+                (searchTerm === '' || 
+                    org.name.toLowerCase().includes(searchTerm) || 
+                    org.needs.some(need => need.item.toLowerCase().includes(searchTerm))) &&
+                (categoryTerm === '' || org.category === categoryTerm) &&
+                (locationTerm === '' || org.location === locationTerm)
+            );
+
+            renderOrganizations(filteredOrgs);
+        }
+
+        searchBtn.addEventListener('click', filterOrganizations);
+        categoryFilter.addEventListener('change', filterOrganizations);
+        locationFilter.addEventListener('change', filterOrganizations);
+
+        // Initial render
+        renderOrganizations(organizations);
+
+        // Navigation buttons
+        document.querySelectorAll('#hiw').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'hiw.html';
+            });
+        });
+    </script>
+</body>
+</html>
