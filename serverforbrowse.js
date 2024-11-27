@@ -566,7 +566,7 @@ async function fetchOrg() {
     const collection = database.collection("maildata");
 
     // Update the query to search for documents where check is true
-    const query = { check: true }; // This checks for documents with check: true
+    const query = { check: "true" }; // This checks for documents with check: true
     const results = await collection.find(query).toArray(); // Fetch all matching documents
 
     if (results.length > 0) {
@@ -684,7 +684,7 @@ app.post("/register", async (req, res) => {
       mail: req.body.email,
       phone: req.body.phone,
       des: req.body.description,
-      check: true,
+      check: "true",
     };
     console.log("crossed review");
 
