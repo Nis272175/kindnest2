@@ -318,8 +318,8 @@ async function fetchOrg() {
     const database = client.db("TempMail");
     const collection = database.collection("maildata");
 
-    // Update the query to search for a specific email
-    const query = { check: "true" }; // Replace with the desired email
+    // Update the query to search for documents where check is true
+    const query = { check: true }; // This checks for documents with check: true
     const results = await collection.find(query).toArray(); // Fetch all matching documents
 
     if (results.length > 0) {
@@ -350,7 +350,7 @@ async function fetchOrg() {
         });
       });
     } else {
-      console.log("No documents found with the specified email.");
+      console.log("No documents found with check: true.");
     }
   } catch (error) {
     console.error("Error reading data:", error);
