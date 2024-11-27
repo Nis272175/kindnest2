@@ -179,7 +179,7 @@ app.post("/register", async (req, res) => {
     console.log("crossed client connect");
     const database = client.db("TempMail");
     console.log("crossed db");
-    const maildata = database.collection("nextdb");
+    const maildata = database.collection("maildata");
     console.log("crossed collection");
 
     const review = {
