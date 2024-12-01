@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate - DonateKindly</title>
+    <title>Donate - KindNests</title>
     <style>
         * {
             margin: 0;
@@ -176,7 +176,7 @@
         <div class="nav-container">
             <a href="index.html" class="logo">
                 <span>♥</span>
-                <span>DonateKindly</span>
+                <span>KindNests</span>
             </a>
             <div class="nav-links">
                 <button class="btn btn-outline" id="hiw">How It Works</button>
@@ -222,9 +222,7 @@
                 <label for="organizationSelect">Select Organization</label>
                 <select id="organizationSelect" class="form-control" required>
                     <option value="">Choose an Organization</option>
-                    <option value="org1">Local School Supply Drive</option>
-                    <option value="org2">Community Food Bank</option>
-                    <option value="org3">Homeless Shelter Supplies</option>
+                    <!-- Options will be populated here -->
                 </select>
             </div>
 
@@ -325,15 +323,55 @@
                     additionalNotes: document.getElementById('additionalNotes').value
                 };
 
-                console.log('Donation Submission:', formData);
-                // In a real application, you would send this data to a backend service
-                alert('Thank you for your donation! We will review your items and contact you soon.');
-                
-                // Reset form
-                donationForm.reset();
-                items.length = 0;
-                renderItemList();
+                // Fetch the email address from the database
+                fetch('/api/getOrganizationEmail', { // Adjust the endpoint as necessary
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ organizationId: formData.organization })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const email = data.email; // Assuming the response contains the email
+
+                    // Send the form data to the email
+                    return fetch('/api/sendEmail', { // Adjust the endpoint as necessary
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            to: email,
+                            subject: 'New Donation Submission',
+                            body: JSON.stringify(formData, null, 2) // Format the body as needed
+                        })
+                    });
+                })
+                .then(() => {
+                    alert('Thank you for your donation! We will review your items and contact you soon.');
+                    // Reset form
+                    donationForm.reset();
+                    items.length = 0;
+                    renderItemList();
+                })
+                .catch(error => console.error('Error sending email:', error));
             });
+            // ----------------- //
+            // Fetch organizations from MongoDB
+            fetch('/api/organizations') // Adjust the endpoint as necessary
+                .then(response => response.json())
+                .then(data => {
+                    const organizationSelect = document.getElementById('organizationSelect');
+                    data.forEach(org => {
+                        const option = document.createElement('option');
+                        option.value = org._id; // Assuming _id is the identifier
+                        option.textContent = org.orgName; // Assuming name is the display name
+                        organizationSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching organizations:', error));
+            // ----------------- //
         });
     </script>
 </body>
