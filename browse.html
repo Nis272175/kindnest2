@@ -261,11 +261,13 @@
 ////////////////////////////////////////////////////////////////////////
 
         // Listen for new data
-        socket.on('newData', (data) => {
+    function onloadin(){       organizations.length = 0;       
+        
+            socket.on('newData', (data) => {
             organizations.push(data); // Append to the array
             console.log(organizations); // Updated array
             renderOrganizations(organizations);
-        });
+        });                    }
 ////////////////////////////////////////////////////////////////////////
         //fetch data from server
         // async function fetchAndAppend() {
@@ -353,6 +355,9 @@
                 window.location.href = 'hiw.html';
             });
         });
+
+        
+        window.onload = onloadin;
     </script>
 </body>
-</html>
+</html> 
