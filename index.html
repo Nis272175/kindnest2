@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DonateKindly - In-Kind Donation Platform</title>
-    <link rel="stylesheet" href="style.css">
+    <title>KindNests - In-Kind Donation Platform</title>
+    
     <style>
         /*------------------------------------------------------*/
         .bubbles-container {
@@ -171,7 +171,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgb(69, 123, 157);
             z-index: -1;
         }
 
@@ -202,12 +202,12 @@
         } */
 
         .slideshow div:nth-child(2) {
-            background-image: url('p1.jpg');
+            background-image: url('/p1.jpg');
             animation-delay: 0s;
         }
 
         .slideshow div:nth-child(3) {
-            background-image: url('p1.jpg');
+            background-image: url('/p1.jpg');
             animation-delay: 5s;
         }
 
@@ -266,7 +266,7 @@
         }
 
         nav {
-            background: #2b5168;
+            /* background: #2b5168; */
             padding: 1rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
@@ -283,7 +283,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: white;
+            color: black;
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
@@ -465,6 +465,7 @@
             background-color: #f1faee;
         }
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -478,7 +479,7 @@
         <div class="nav-container">
             <a href="#" class="logo">
                 <span>♥</span>
-                <span>DonateKindly</span>
+                <span>KindNests</span>
             </a>
             <div class="nav-links">
                 <button class="btn btn-outline" id="hiw">How It Works</button>
@@ -496,27 +497,27 @@
     </section> -->
 <!-- --------------------------------------------- -->
     <section class="hero">
-        <div class="slideshow">
+        <div class="slideshow" style="background-image: url('/p1.jpg');">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
         </div>
-        <h1 style="color: white; text-shadow: black;">Make a Difference Through<br>In-Kind Donations</h1>
+        <h1 style="color: white; text-shadow: rgb(8, 7, 7);">Make a Difference Through<br>In-Kind Donations</h1>
         <span style="color: White; background-color: rgba(0,0,0,0.3);">Connect with organizations in need and donate items that make a real impact.</span>
         <br><br>
         <button class="btn btn-primary donation">Start Donating</button>
     </section>
 <!-- --------------------------------------------- -->
 
-    <section class="search-section">
+    <!-- <section class="search-section">
         <div class="search-container">
             <div class="search-box">
                 <input type="text" class="search-input" placeholder="Search for items or organizations">
                 <button class="btn btn-primary">Search</button>
             </div>
         </div>
-    </section>
+    </section> -->
 
 <hr style="width: 40%; margin:auto; border-color: #457B9D; opacity: 0.5;">
 
@@ -561,12 +562,15 @@
 
     <hr style="width: 70%; margin:auto; border-color: #457B9D;">
     <!-- -----------------------vdo scton------------------------------------ -->
-    <section class="video-showcase">
+    <!-- <section class="video-showcase">
         <h2 class="section-title">What and Why?</h2>
         <div class="video-grid">
             <div class="video-card">
                 <div class="video-container">
-                    <img src="/api/placeholder/400/400" alt="Video thumbnail 1" class="video-thumbnail">
+                    <video class="video-thumbnail" muted>
+                        <source src="/v1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="play-button">▶️</div>
                 </div>
                 <div class="video-info">
@@ -576,7 +580,10 @@
             </div>
             <div class="video-card">
                 <div class="video-container">
-                    <img src="/api/placeholder/400/400" alt="Video thumbnail 1" class="video-thumbnail">
+                    <video class="video-thumbnail" muted>
+                        <source src="v2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="play-button">▶️</div>
                 </div>
                 <div class="video-info">
@@ -586,7 +593,10 @@
             </div>
             <div class="video-card">
                 <div class="video-container">
-                    <img src="/api/placeholder/400/400" alt="Video thumbnail 1" class="video-thumbnail">
+                    <video class="video-thumbnail" muted>
+                        <source src="v3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="play-button">▶️</div>
                 </div>
                 <div class="video-info">
@@ -689,7 +699,7 @@
                 }
             }
         </style>
-    </section>
+    </section> -->
     <!-- -----------------------vdo scton------------------------------------ -->
 
 
@@ -697,7 +707,7 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
-                <h4>About DonateKindly</h4>
+                <h4>About KindNests</h4>
                 <ul class="footer-links">
                     <li><a href="mission.html">Our Mission</a></li>
                     <li><a href="hiw.html">How It Works</a></li>
@@ -748,7 +758,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p>© 2024 DonateKindly. All rights reserved. Making in-kind donations easier for everyone.</p>
+            <p>© 2024 KindNests. All rights reserved. Making in-kind donations easier for everyone.</p>
         </div>
     </footer>
 
@@ -840,12 +850,18 @@
         // ---------------------------------------------------------------------------
         // ---------------------------------------------------------------------------
 
+        document.querySelectorAll('.video-card').forEach(card => {
+            const video = card.querySelector('.video-thumbnail');
 
+            card.addEventListener('mouseenter', () => {
+                video.play(); // Play the video on hover
+            });
 
-
-
-
-
+            card.addEventListener('mouseleave', () => {
+                video.pause(); // Pause the video when not hovering
+                video.currentTime = 0; // Reset video to start
+            });
+        });
     </script>
 
 
