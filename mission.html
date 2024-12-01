@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DonateKindly - Our Mission</title>
+    <title>KindNests - Our Mission</title>
     <style>
         * {
             margin: 0;
@@ -30,7 +30,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #e91e63;
+            color: rgb(69, 123, 157);
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
@@ -51,14 +51,14 @@
         }
 
         .btn-primary {
-            background: #e91e63;
+            background: rgb(69, 123, 157);
             color: white;
         }
 
         .btn-outline {
             background: transparent;
-            border: 1px solid #e91e63;
-            color: #e91e63;
+            border: 1px solid rgb(69, 123, 157);
+            color: rgb(69, 123, 157);
         }
 
         .btn:hover {
@@ -67,7 +67,7 @@
         }
 
         .hero {
-            background: linear-gradient(rgba(233, 30, 99, 0.05), rgba(233, 30, 99, 0.1));
+            background: linear-gradient(rgba(69, 123, 157, 0.05), rgba(69, 123, 157, 0.1));
             padding: 4rem 1rem;
             text-align: center;
         }
@@ -142,7 +142,7 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #e91e63;
+            color: rgb(69, 123, 157);
             margin-bottom: 0.5rem;
         }
 
@@ -187,7 +187,7 @@
         }
 
         .cta-section {
-            background: linear-gradient(rgba(233, 30, 99, 0.9), rgba(233, 30, 99, 1));
+            background: linear-gradient(rgba(69, 123, 157, 0.9), rgba(69, 123, 157, 1));
             color: white;
             text-align: center;
             padding: 4rem 1rem;
@@ -209,7 +209,7 @@
 
         .btn-white {
             background: white;
-            color: #e91e63;
+            color: rgb(69, 123, 157);
         }
 
         @media (max-width: 768px) {
@@ -232,7 +232,7 @@
         <div class="nav-container">
             <a href="index.html" class="logo">
                 <span>♥</span>
-                <span>DonateKindly</span>
+                <span>KindNests</span>
             </a>
             <div class="nav-links">
                 <button class="btn btn-outline">How It Works</button>
@@ -245,12 +245,12 @@
 
     <section class="hero">
         <h1>Our Mission</h1>
-        <p>At DonateKindly, we're bridging the gap between generous donors and organizations in need, making in-kind donations simpler, more efficient, and more impactful for everyone involved.</p>
+        <p>At KindNests, we're bridging the gap between generous donors and organizations in need, making in-kind donations simpler, more efficient, and more impactful for everyone involved.</p>
     </section>
 
     <section class="mission-content">
         <h2 class="section-title">Our Core Values</h2>
-        <p class="section-subtitle">These principles guide everything we do at DonateKindly</p>
+        <p class="section-subtitle">These principles guide everything we do at KindNests</p>
         
         <div class="values-grid">
             <div class="value-card">
@@ -344,17 +344,12 @@
             });
         });
 
-
         document.querySelectorAll('.donation').forEach(button => {
             button.addEventListener('click', function(e) {
-                
                 e.preventDefault();
                 window.location.href = 'donation.html';
             });
         });
-
-
-
 
         // Animate stats when they come into view
         const stats = document.querySelectorAll('.stat-number');
