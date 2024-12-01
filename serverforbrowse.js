@@ -536,4 +536,80 @@ server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+// Add this route to handle fetching organizations
+app.get("/api/organizations", async (req, res) => {
+    try {
+        await client.connect();
+        const database = client.db("TempMail");
+        const collection = database.collection("maildata");
+
+        // Query to find organizations (adjust the query as needed)
+        const query = { check: "true" }; // Assuming you want to fetch only active organizations
+        const results = await collection.find(query).toArray();
+
+        // Send the results back to the client
+        res.json(results);
+    } catch (error) {
+        console.error("Error fetching organizations:", error);
+        res.status(500).json({ error: error.message });
+    } finally {
+        // Optionally, you can keep the client open for further requests
+        // await client.close(); // Uncomment if you want to close the connection after each request
+    }
+});
+
+// Add this route to handle fetching organization email
+app.post("/api/getOrganizationEmail", async (req, res) => {
+    try {
+        await client.connect();
+        const database = client.db("TempMail");
+        const collection = database.collection("maildata");
+
+        // Fetch the organization based on the provided ID
+        const organizationId = req.body.organizationId; // Get the ID from the request body
+        const query = { _id: new ObjectId(organizationId) }; // Ensure the ID is in the correct format
+        const organization = await collection.findOne(query);
+
+        if (organization) {
+            res.json({ email: organization.mail }); // Send the email back to the client
+        } else {
+            res.status(404).json({ error: "Organization not found" });
+        }
+    } catch (error) {
+        console.error("Error fetching organization email:", error);
+        res.status(500).json({ error: error.message });
+    } finally {
+        // Optionally, you can keep the client open for further requests
+        // await client.close(); // Uncomment if you want to close the connection after each request
+    }
+});
+
+// Add this route to handle sending the donation email
+app.post("/api/sendEmail", async (req, res) => {
+    const { to, subject, body } = req.body; // Destructure the request body
+
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+            user: "collectnis@gmail.com",
+            pass: "pnethpyfiwonoufy",
+        },
+    });
+
+    try { 
+        await transporter.sendMail({
+            to: to,
+            subject: subject,
+            html: body,
+        });
+        console.log("Email sent successfully");
+        res.status(200).json({ message: "Email sent successfully" });
+    } catch (error) {
+        console.error("Error sending email:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 
