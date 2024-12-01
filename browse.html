@@ -1,14 +1,263 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browse Organizations - DonateKindly</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-    </script>
+    <title>KindNests - In-Kind Donation Platform</title>
+    
     <style>
+        /*------------------------------------------------------*/
+        .bubbles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+          }
+      
+          .bubble {
+            position: absolute;
+            background: rgba(44, 101, 126, 0.39);
+            border-radius: 50%;
+            animation: float-up var(--duration) linear infinite;
+            opacity: 0;
+          }
+      
+          @keyframes float-up {
+            0% {
+              transform: translateY(80vh) translateX(0);
+              opacity: 0;
+            }
+            10% {
+              opacity: 0.8;
+            }
+            90% {
+              opacity: 0.8;
+            }
+            100% {
+              transform: translateY(-20vh) translateX(var(--travel));
+              opacity: 0;
+            }
+          }
+
+          .background-disc {
+            position: fixed;
+            background: rgb(69, 123, 157);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .disc-left {
+            left: -200px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: gentle-float 15s infinite ease-in-out;
+        }
+
+        .disc-right {
+            right: -200px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgb(69, 123, 157);
+            animation: gentle-float 15s infinite ease-in-out reverse;
+        }
+
+        @keyframes gentle-float {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.05); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+        /* ---------------------------------------------------- */
+        .footr
+        {
+    background-color: rgb(35, 72, 95);
+    width: 100%;
+    height: 200px;
+        }
+        .footer {
+        background:rgb(33, 79, 107);
+        padding: 4rem 1rem 2rem;
+        margin-top: 4rem;
+        border-top: 1px solid #eee;
+        }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .footer-section h4 {
+        color: rgb(255, 255, 255);
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+        list-style: none;
+    }
+
+    .footer-links li {
+        margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: #457B9D;
+    }
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 2rem auto 0;
+        padding-top: 2rem;
+        border-top: 1px solid #eee;
+        text-align: center;
+        color: #ffffff;
+        font-size: 0.9rem;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .social-links a {
+        color: #666;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+        .footer-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .social-links {
+            justify-content: center;
+        }
+    }
+
+    /* ----------------------------------------------------------------------------- */
+
+    .hero {
+            position: relative;
+            overflow: hidden;
+            background: #f8f9fa;
+            padding: 6rem 1rem;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgb(69, 123, 157);
+            z-index: -1;
+        }
+
+        .slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image: url('p1.jpg');
+        }
+
+        .slideshow div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation: slideshow 9s linear infinite;
+        }
+
+        /* .slideshow div:nth-child(1) {
+            background-image: url('p2.jpg');
+            animation-delay: 0s;
+        } */
+
+        .slideshow div:nth-child(2) {
+            background-image: url('/p1.jpg');
+            animation-delay: 0s;
+        }
+
+        .slideshow div:nth-child(3) {
+            background-image: url('/p1.jpg');
+            animation-delay: 5s;
+        }
+
+        /* .slideshow div:nth-child(4) {
+            background-image: url('p1.jpg');
+            animation-delay: 8s;
+        }
+
+        @keyframes slideshow {
+            0%, 20% {
+                opacity: 0;
+            }
+            25%, 45% {
+                opacity: 1;
+            }
+            50%, 100% {
+                opacity: 0;
+            }
+        } */
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            background: #457B9D;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #0b375c;
+            transform: translateY(-1px);
+        }
+        /* ---------------------------------------------------- */
         * {
             margin: 0;
             padding: 0;
@@ -16,13 +265,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        body {
-            background-color: #f1faee;
-            color: #333;
-        }
-
         nav {
-            background: #2b5168;
+            /* background: #2b5168; */
             padding: 1rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
@@ -39,7 +283,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: white;
+            color: black;
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
@@ -76,288 +320,571 @@
             transform: translateY(-1px);
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
+        .hero {
+            background: #f8f9fa;
+            padding: 4rem 1rem;
+            text-align: center;
+            height: 400px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         .search-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .search-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-box {
             display: flex;
             gap: 1rem;
-            margin-bottom: 2rem;
         }
 
         .search-input {
-            flex-grow: 1;
+            flex: 1;
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            font-size: 1rem;
         }
 
-        .filters {
-            background-color: #ffffff;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .donation-types {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
         }
 
-        .filter-group {
-            flex: 1;
-        }
-
-        .filter-group label {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .filter-group select {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            width: 100%;
-            transition: border-color 0.3s;
-        }
-
-        .filter-group select:focus {
-            border-color: #174969;
-            outline: none;
-        }
-
-        .organizations-grid {
+        .donation-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2em;
+            margin-top: 2rem;
+        }
+
+        .donation-card {
+            background: #5587a7cc;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: #e3f2fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .donation-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .donation-card p {
+            color: #000000;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-orgs {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .org-card {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             padding: 1.5rem;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .org-card:hover {
-            transform: translateY(-5px);
+        .org-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
         }
 
-        .org-needs {
-            margin-top: 1rem;
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
+        .org-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
         }
 
-        .need-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            padding: 0.5rem;
-            background-color: #f4f4f4;
-            border-radius: 5px;
-        }
-
-        .match-badge {
-            background-color: #4CAF50;
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            font-size: 0.8rem;
+        h2.section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 2rem;
         }
 
         @media (max-width: 768px) {
-            .search-section, .filters {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .search-box {
                 flex-direction: column;
             }
         }
+
+
+
+        body
+        {
+            background-color: #f1faee;
+        }
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- ------------------------------------- -->
+    <div class="background-disc disc-left"></div>
+    <div class="background-disc disc-right"></div>
+    <!-- -------------------------------------- -->
+         <!-- <div class="bubbles-container" id="bubblesContainer"></div>  -->
+    <!-- ------------------------------------- -->
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 <span>♥</span>
-                <span>DonateKindly</span>
+                <span>KindNests</span>
             </a>
             <div class="nav-links">
                 <button class="btn btn-outline" id="hiw">How It Works</button>
-                <button class="btn btn-outline donation">Browse</button>
+                <button class="btn btn-outline browse">Browse</button>
                 <button class="btn btn-outline">Sign In</button>
                 <button class="btn btn-primary donation">Get Started</button>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="search-section">
-            <input type="text" class="search-input" placeholder="Search organizations or needed items">
-            <button class="btn btn-primary" id="search-btn">Search</button>
+    <!-- <section class="hero">
+        <h1>Make a Difference Through<br>In-Kind Donations</h1>
+        <p>Connect with organizations in need and donate items that make a real impact.</p>
+        <button class="btn btn-primary donation">Start Donating</button>
+    </section> -->
+<!-- --------------------------------------------- -->
+    <section class="hero">
+        <div class="slideshow" style="background-image: url('/p1.jpg');">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
+        <h1 style="color: white; text-shadow: rgb(8, 7, 7);">Make a Difference Through<br>In-Kind Donations</h1>
+        <span style="color: White; background-color: rgba(0,0,0,0.3);">Connect with organizations in need and donate items that make a real impact.</span>
+        <br><br>
+        <button class="btn btn-primary donation">Start Donating</button>
+    </section>
+<!-- --------------------------------------------- -->
 
-        <div class="filters">
-            <div class="filter-group">
-                <label for="category-filter">Category</label>
-                <select id="category-filter">
-                    <option value="">All Categories</option>
-                    <option value="education">Education</option>
-                    <option value="food">Food Bank</option>
-                    <option value="shelter">Homeless Shelter</option>
-                    <option value="children">Children's Support</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="location-filter">Location</label>
-                <select id="location-filter">
-                    <option value="">All Locations</option>
-                    <option value="urban">Urban</option>
-                    <option value="suburban">Suburban</option>
-                    <option value="rural">Rural</option>
-                </select>
+    <!-- <section class="search-section">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search for items or organizations">
+                <button class="btn btn-primary">Search</button>
             </div>
         </div>
-        <div class="organizations-grid" id="org-results"></div>
-    </div>
-    <!-- //////////////////////////////////////////////// -->
-    <!-- <script src="/socket.io/socket.io.js"></script> -->
-    <!-- /////////////////////////////////////////////// -->
-    <script>
+    </section> -->
 
+<hr style="width: 40%; margin:auto; border-color: #457B9D; opacity: 0.5;">
 
-        const organizations = [
-            {
-                name: "Hope Education Center",
-                category: "education",
-                location: "urban",
-                description: "Supporting underprivileged students",
-                needs: [
-                    { item: "Textbooks", quantity: 50, urgency: "high" },
-                    { item: "Laptops", quantity: 10, urgency: "medium" },
-                    { item: "Backpacks", quantity: 30, urgency: "low" }
-                ]
-            },
-            {
-                name: "Community Food Bank",
-                category: "food",
-                location: "suburban",
-                description: "Providing meals to families in need",
-                needs: [
-                    { item: "Non-perishable Food", quantity: 200, urgency: "high" },
-                    { item: "Canned Goods", quantity: 100, urgency: "medium" }
-                ]
-            },
-            {
-                name: "Urban Shelter Network",
-                category: "shelter",
-                location: "urban",
-                description: "Supporting homeless individuals",
-                needs: [
-                    { item: "Blankets", quantity: 50, urgency: "high" },
-                    { item: "Winter Coats", quantity: 25, urgency: "medium" }
-                ]
-            }
-        ];
-////////////////////////////////////////////////////////////////////////
+    <section class="donation-types">
+        <h2 class="section-title">Choose How to Donate</h2>
+        <div class="donation-grid">
+            <div class="donation-card">
+                <div class="card-icon">🎁</div>
+                <h3>Individual Donation</h3>
+                <p>Perfect for personal contributions and one-time donations.</p>
+                <button class="btn btn-primary donation">Donate as Individual</button>
+            </div>
+            <div class="donation-card">
+                <div class="card-icon">👥</div>
+                <h3>Group Donation</h3>
+                <p>Great for businesses, schools, and community organizations.</p>
+                <button class="btn btn-primary donation">Donate as Group</button>
+            </div>
+        </div>
+    </section>
 
-        // Listen for new data
-    function onloadin(){       organizations.length = 0;       
-        
-            socket.on('newData', (data) => {
-            organizations.push(data); // Append to the array
-            console.log(organizations); // Updated array
-            renderOrganizations(organizations);
-        });                    }
-////////////////////////////////////////////////////////////////////////
-        //fetch data from server
-        // async function fetchAndAppend() {
-        //     console.log("in fetchAndAppend"); // // // // / // / / / / / // / / // // 
-        //     const response = await fetch('/browse.html'); // Fetch from server.js endpoint
-        //     console.log("fetched in response");
-            
-        //     if (response.ok) {
-        //         const newData = await response.json();
-        //         console.log("parsed into json");
-                
-        //         organizations.push(newData); // Append to the array
-        //     //   console.log(); // Changes are logged to the console, not the page
-        //     }
-        //     else {
-        //         console.error("Failed to fetch new data.");
-        //     }
-        // }
-        // fetchAndAppend();
-        
-        //
- 
-        const orgResults = document.getElementById('org-results');
-        const searchInput = document.querySelector('.search-input');
-        const searchBtn = document.getElementById('search-btn');
-        const categoryFilter = document.getElementById('category-filter');
-        const locationFilter = document.getElementById('location-filter');
+    <section class="featured-orgs">
+        <h2 class="section-title">Featured Organizations</h2>
+        <div class="org-grid">
+            <div class="org-card">
+                <h3>Organization 1</h3>
+                <p>Currently seeking donations for their community support programs.</p>
+                <button class="btn btn-outline">View Needs</button>
+            </div>
+            <div class="org-card">
+                <h3>Organization 2</h3>
+                <p>Currently seeking donations for their community support programs.</p>
+                <button class="btn btn-outline">View Needs</button>
+            </div>
+            <div class="org-card">
+                <h3>Organization 3</h3>
+                <p>Currently seeking donations for their community support programs.</p>
+                <button class="btn btn-outline">View Needs</button>
+            </div>
+        </div>
+    </section>
 
-        function renderOrganizations(filteredOrgs) {
-            orgResults.innerHTML = filteredOrgs.map(org => `
-                <div class="org-card">
-                    <h3>${org.name}</h3>
-                    <p>${org.description}</p>
-                    <div class="org-needs">
-                        <h4>Current Needs</h4>
-                        ${org.needs.map(need => `
-                            <div class="need-item">
-                                <span>${need.item}</span>
-                                <div>
-                                    <span>Qty: ${need.quantity}</span>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <button class="btn btn-primary donation">Donate to ${org.name}</button>
+    <hr style="width: 70%; margin:auto; border-color: #457B9D;">
+    <!-- -----------------------vdo scton------------------------------------ -->
+    <!-- <section class="video-showcase">
+        <h2 class="section-title">What and Why?</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-container">
+                    <video class="video-thumbnail" muted>
+                        <source src="/v1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="play-button">▶️</div>
                 </div>
-            `).join('');
+                <div class="video-info">
+                    <h3>Making a Difference: Local School Supply Drive</h3>
+                    <p>See how your donations help students succeed</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-container">
+                    <video class="video-thumbnail" muted>
+                        <source src="v2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="play-button">▶️</div>
+                </div>
+                <div class="video-info">
+                    <h3>Making a Difference: Local School Supply Drive</h3>
+                    <p>See how your donations help students succeed</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-container">
+                    <video class="video-thumbnail" muted>
+                        <source src="v3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="play-button">▶️</div>
+                </div>
+                <div class="video-info">
+                    <h3>Making a Difference: Local School Supply Drive</h3>
+                    <p>See how your donations help students succeed</p>
+                </div>
+            </div>
+            
+            
+            
+        </div>
+    
+        <style>
+            .video-showcase {
+                max-width: 1200px;
+                margin: 4rem auto;
+                padding: 0 1rem;
+            }
+    
+            .video-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+    
+            .video-card {
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                overflow: hidden;
+                transition: transform 0.3s ease;
+            }
+    
+            .video-card:hover {
+                transform: translateY(-5px);
+            }
+    
+            .video-container {
+                position: relative;
+                width: 100%;
+                padding-top: 100%; /* Creates square aspect ratio */
+                overflow: hidden;
+            }
+    
+            .video-thumbnail {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+    
+            .video-card:hover .video-thumbnail {
+                transform: scale(1.05);
+            }
+    
+            .play-button {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 2rem;
+                background: rgba(255, 255, 255, 0.9);
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+    
+            .play-button:hover {
+                background: rgba(255, 255, 255, 1);
+            }
+    
+            .video-info {
+                padding: 1.5rem;
+            }
+    
+            .video-info h3 {
+                margin: 0 0 0.5rem 0;
+                color: #333;
+                font-size: 1.1rem;
+            }
+    
+            .video-info p {
+                margin: 0;
+                color: #666;
+                font-size: 0.9rem;
+            }
+    
+            @media (max-width: 768px) {
+                .video-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                }
+            }
+        </style>
+    </section> -->
+    <!-- -----------------------vdo scton------------------------------------ -->
 
-            // Re-attach donation button event listeners
-            document.querySelectorAll('.donation').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.location.href = 'donation.html';
-                });
+
+    <!--FOOTER-->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>About KindNests</h4>
+                <ul class="footer-links">
+                    <li><a href="mission.html">Our Mission</a></li>
+                    <li><a href="hiw.html">How It Works</a></li>
+                    <!-- <li><a href="#">Impact Stories</a></li>
+                    <li><a href="#">Press & Media</a></li>
+                    <li><a href="#">Careers</a></li> -->
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>For Donors</h4>
+                <ul class="footer-links">
+                    <li><a href="donation.html">Start Donating</a></li>
+                    <li><a href="guideline.html">Donation Guidelines</a></li>
+                    <!-- <li><a href="#">Find Organizations</a></li>
+                    <li><a href="#">Tax Deductions</a></li> -->
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>For Organizations</h4>
+                <ul class="footer-links">
+                    <li><a href="/regOrg.html">Register Organization</a></li>
+                    <li><a href="faq.html">FAQ</a></li>  <!--from For donors-->
+                    <!-- <li><a href="#">Resources</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Partner With Us</a></li>
+                    <li><a href="#">Manage Donations</a></li> -->
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact & Support</h4>
+                <ul class="footer-links">
+                    <!-- <li><a href="#">Help Center</a></li> -->
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <!-- <li><a href="#">Report an Issue</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li> -->
+                </ul>
+                <!-- <div class="social-links">
+                    <a href="#" title="Facebook">📱</a>
+                    <a href="#" title="Twitter">💬</a>
+                    <a href="#" title="Instagram">📸</a>
+                    <a href="#" title="LinkedIn">💼</a>
+                </div> -->
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 KindNests. All rights reserved. Making in-kind donations easier for everyone.</p>
+        </div>
+    </footer>
+
+
+
+    <script>
+        // Add basic interactivity
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // You can add specific functionality for each button here
+                console.log('Button clicked:', this.textContent);
             });
-        }
+        });
 
-        function filterOrganizations() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const categoryTerm = categoryFilter.value;
-            const locationTerm = locationFilter.value;
-
-            const filteredOrgs = organizations.filter(org => 
-                (searchTerm === '' || 
-                    org.name.toLowerCase().includes(searchTerm) || 
-                    org.needs.some(need => need.item.toLowerCase().includes(searchTerm))) &&
-                (categoryTerm === '' || org.category === categoryTerm) &&
-                (locationTerm === '' || org.location === locationTerm)
-            );
-
-            renderOrganizations(filteredOrgs);
-        }
-
-        searchBtn.addEventListener('click', filterOrganizations);
-        categoryFilter.addEventListener('change', filterOrganizations);
-        locationFilter.addEventListener('change', filterOrganizations);
-
-        // Initial render
-        renderOrganizations(organizations);
-
-        // Navigation buttons
         document.querySelectorAll('#hiw').forEach(button => {
             button.addEventListener('click', function(e) {
+                
                 e.preventDefault();
                 window.location.href = 'hiw.html';
             });
         });
 
+        document.querySelectorAll('.donation').forEach(button => {
+            button.addEventListener('click', function(e) {
+                
+                e.preventDefault();
+                window.location.href = 'donation.html';
+            });
+        });
+        document.querySelectorAll('.browse').forEach(button => {
+            button.addEventListener('click', function(e) {
+                
+                e.preventDefault();
+                window.location.href = 'browse.html';
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchButton = searchInput.nextElementSibling;
+
+        searchButton.addEventListener('click', function() {
+            const searchTerm = searchInput.value;
+            // You can implement search functionality here
+            console.log('Searching for:', searchTerm);
+        });
+
+        // ---------------------------------------------------------------------------
+        // ---------------------------------------------------------------------------
+        function createBubble() {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      
+      // Random properties
+      const size = Math.random() * 100 + 30;
+      const startPosition = Math.random() * 100;
+      const travel = (Math.random() - 0.5) * 400;
+      const duration = Math.random() * 8 + 5;
+      
+      bubble.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${startPosition}%;
+        --travel: ${travel}px;
+        --duration: ${duration}s;
+      `;
+      
+      return bubble;
+    }
+
+    function initBubbles() {
+      const container = document.getElementById('bubblesContainer');
+      const bubbleCount = 25;
+      
+      for (let i = 0; i < bubbleCount; i++) {
+        const bubble = createBubble();
+        container.appendChild(bubble);
         
-        window.onload = onloadin;
+        // Remove and replace bubble when animation ends
+        bubble.addEventListener('animationend', () => {
+          bubble.remove();
+          container.appendChild(createBubble());
+        });
+      }
+    }
+
+    // Initialize bubbles
+    initBubbles();
+        // ---------------------------------------------------------------------------
+        // ---------------------------------------------------------------------------
+
+        document.querySelectorAll('.video-card').forEach(card => {
+            const video = card.querySelector('.video-thumbnail');
+
+            card.addEventListener('mouseenter', () => {
+                video.play(); // Play the video on hover
+            });
+
+            card.addEventListener('mouseleave', () => {
+                video.pause(); // Pause the video when not hovering
+                video.currentTime = 0; // Reset video to start
+            });
+        });
     </script>
+
+
+    <!-- <script>
+        // Add basic interactivity
+        document.querySelectorAll('.btn').forEach(button => {
+            if (button.tagName !== 'A') { // Only add click handler to actual buttons, not anchor tags
+                button.addEventListener('click', function() {
+                    console.log('Button clicked:', this.textContent);
+                });
+            }
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchButton = searchInput.nextElementSibling;
+
+        searchButton.addEventListener('click', function() {
+            const searchTerm = searchInput.value;
+            console.log('Searching for:', searchTerm);
+        });
+    </script> -->
+
+
 </body>
-</html> 
+</html>
