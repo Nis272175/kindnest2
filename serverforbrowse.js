@@ -3,7 +3,7 @@
 // const path = require("path");
 // const bodyParser = require("body-parser");
 // const { MongoClient, ObjectId } = require("mongodb");
-// const uri =
+// const uri = 
 //   "mongodb+srv://collectnis:240311035766@learningstage1.rjgxf.mongodb.net/?retryWrites=true&w=majority&appName=learningStage1";
 // const app = express();
 
