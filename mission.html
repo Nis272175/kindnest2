@@ -1,23 +1,21 @@
+<!-- register.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KindNests - Our Mission</title>
+    <title>Register Your Organization - KindNests</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        body {
+            background-color: #f1faee;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         nav {
-            background: white;
+            background: #2b5168;
             padding: 1rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -25,22 +23,19 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: rgb(69, 123, 157);
+            color: white;
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
         }
-
         .nav-links {
             display: flex;
             gap: 20px;
         }
-
         .btn {
             padding: 10px 20px;
             border-radius: 5px;
@@ -49,188 +44,68 @@
             font-weight: 500;
             transition: all 0.3s ease;
         }
-
-        .btn-primary {
-            background: rgb(69, 123, 157);
-            color: white;
-        }
-
         .btn-outline {
             background: transparent;
-            border: 1px solid rgb(69, 123, 157);
-            color: rgb(69, 123, 157);
+            border: 1px solid #ffffff;
+            color: #ffffff;
         }
-
+        .btn-primary {
+            background: #457B9D;
+            color: white;
+        }
         .btn:hover {
             opacity: 0.9;
             transform: translateY(-1px);
         }
-
-        .hero {
-            background: linear-gradient(rgba(69, 123, 157, 0.05), rgba(69, 123, 157, 0.1));
-            padding: 4rem 1rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
+        .container {
             max-width: 800px;
-            margin: 0 auto;
-            color: #666;
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-
-        .mission-content {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 1rem;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .value-card {
-            background: white;
+            margin: 2rem auto;
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .value-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .value-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .impact-section {
-            background: #f8f9fa;
-            padding: 4rem 1rem;
-            margin: 4rem 0;
-        }
-
-        .impact-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: rgb(69, 123, 157);
-            margin-bottom: 0.5rem;
-        }
-
-        .team-section {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 1rem;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .team-card {
-            text-align: center;
-        }
-
-        .team-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-            background: #f0f0f0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
-        }
-
-        .cta-section {
-            background: linear-gradient(rgba(69, 123, 157, 0.9), rgba(69, 123, 157, 1));
-            color: white;
-            text-align: center;
-            padding: 4rem 1rem;
-            margin-top: 4rem;
-        }
-
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-section h2 {
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            margin-bottom: 2rem;
-        }
-
-        .btn-white {
             background: white;
-            color: rgb(69, 123, 157);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .value-card, .stat-card, .team-card {
-                padding: 1.5rem;
-            }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #457B9D;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+        button:hover {
+            background: #0b375c;
         }
     </style>
 </head>
 <body>
+
+    <!-- Navigation Bar -->
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="logo">
+            <a href="/index.html" class="logo">
                 <span>♥</span>
                 <span>KindNests</span>
             </a>
@@ -243,131 +118,47 @@
         </div>
     </nav>
 
-    <section class="hero">
-        <h1>Our Mission</h1>
-        <p>At KindNests, we're bridging the gap between generous donors and organizations in need, making in-kind donations simpler, more efficient, and more impactful for everyone involved.</p>
-    </section>
-
-    <section class="mission-content">
-        <h2 class="section-title">Our Core Values</h2>
-        <p class="section-subtitle">These principles guide everything we do at KindNests</p>
-        
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon">🤝</div>
-                <h3>Community First</h3>
-                <p>We believe in the power of community and creating meaningful connections between donors and organizations.</p>
+    <div class="container">
+        <h1>Register Your Organization</h1>
+        <form id="registerForm" method="POST" action="/register">
+            <div class="form-group">
+                <label for="orgName">Organization Name</label>
+                <input type="text" id="orgName" name="orgName" required>
             </div>
-            <div class="value-card">
-                <div class="value-icon">💡</div>
-                <h3>Innovation</h3>
-                <p>We continuously improve our platform to make in-kind donations more efficient and accessible.</p>
+            <div class="form-group">
+                <label for="contactName">Contact Person Name</label>
+                <input type="text" id="contactName" name="contactName" required>
             </div>
-            <div class="value-card">
-                <div class="value-icon">🎯</div>
-                <h3>Impact Focused</h3>
-                <p>Every feature and decision is guided by our goal to maximize the impact of donations.</p>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
             </div>
-            <div class="value-card">
-                <div class="value-icon">🤲</div>
-                <h3>Transparency</h3>
-                <p>We maintain open communication and clear tracking of all donations from start to finish.</p>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
             </div>
-        </div>
-    </section>
-
-    <section class="impact-section">
-        <div class="impact-content">
-            <h2 class="section-title">Our Impact</h2>
-            <p class="section-subtitle">Together with our community, we're making a real difference</p>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">50K+</div>
-                    <p>Items Donated</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1000+</div>
-                    <p>Organizations Helped</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">25K+</div>
-                    <p>Active Donors</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100+</div>
-                    <p>Communities Served</p>
-                </div>
+            <div class="form-group">
+                <label for="description">Brief Description of Your Organization</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
             </div>
-        </div>
-    </section>
-
-    <section class="team-section">
-        <h2 class="section-title">Our Leadership Team</h2>
-        <p class="section-subtitle">Meet the passionate individuals driving our mission forward</p>
-        
-        <div class="team-grid">
-            <div class="team-card">
-                <img src="/api/placeholder/150/150" alt="Team member" class="team-image">
-                <h3>Sarah Johnson</h3>
-                <p>Founder & CEO</p>
-            </div>
-            <div class="team-card">
-                <img src="/api/placeholder/150/150" alt="Team member" class="team-image">
-                <h3>Michael Chen</h3>
-                <p>Chief Operations Officer</p>
-            </div>
-            <div class="team-card">
-                <img src="/api/placeholder/150/150" alt="Team member" class="team-image">
-                <h3>Lisa Rodriguez</h3>
-                <p>Community Relations Director</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2>Join Our Mission</h2>
-            <p>Whether you're looking to donate or are an organization in need, we'd love to have you join our community.</p>
-            <button class="btn btn-white donation">Get Started Today</button>
-        </div>
-    </section>
+            <button type="submit">Register</button>
+        </form>
+    </div>
 
     <script>
-        // Add smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        document.querySelectorAll('.donation').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.href = 'donation.html';
-            });
-        });
-
-        // Animate stats when they come into view
-        const stats = document.querySelectorAll('.stat-number');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        });
-
-        stats.forEach(stat => {
-            stat.style.opacity = 0;
-            stat.style.transform = 'translateY(20px)';
-            stat.style.transition = 'all 0.6s ease';
-            observer.observe(stat);
-        });
+        // document.getElementById('registerForm').addEventListener('submit', function(e) {
+        //     e.preventDefault();
+        //     // Here you can add functionality to handle the form submission
+        //     // console.log('Form submitted:', {
+        //     //     orgName: this.orgName.value,
+        //     //     contactName: this.contactName.value,
+        //     //     email: this.email.value,
+        //     //     phone: this.phone.value,
+        //     //     description: this.description.value
+        //     // });
+            
+        // });
     </script>
+
 </body>
 </html>
