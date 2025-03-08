@@ -1,4 +1,4 @@
-# kindnests - A platform for individual donation
+# kindnests - A platform for individual donations
 
 KindNests is a platform connecting, primarily, individuals to NGOs and non profit organizations.
 
