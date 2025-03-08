@@ -390,8 +390,8 @@ async function fetchOrg() {
 io.on("connection", (socket) => {
   console.log("Client connected");
 
-  socket.on("disconnect", () => {
-    console.log("Client disconnected");
+  socket.on("disconnect", (reason) => {
+    console.log("Client disconnected due to ", reason);
   });
 });
 
